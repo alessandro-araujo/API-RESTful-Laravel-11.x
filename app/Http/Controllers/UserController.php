@@ -8,7 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -18,6 +18,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
+        JWTAuth::parseToken()->authenticate();
         $users = User::all();
         return response()->json([
             'status' => true,

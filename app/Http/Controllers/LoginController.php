@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function login(Request $request): JsonResponse
     {
         try {
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            if(Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
                 $user = Auth::user();
                 $token = $request->user()->createToken('api-token')->plainTextToken;
 
